@@ -5,10 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TagModule } from './tag/tag.module';
 
-import { config } from './ormconfig';
+import ormconfig from './ormconfig';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), TagModule],
+  imports: [TypeOrmModule.forRoot(ormconfig), TagModule],
   controllers: [AppController],
   providers: [AppService],
 })

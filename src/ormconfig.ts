@@ -1,5 +1,6 @@
-import { DataSourceOptions } from 'typeorm';
-export const config: DataSourceOptions = {
+import { ConnectionOptions } from 'typeorm';
+
+const ormconfig: ConnectionOptions = {
   type: 'postgres',
   host: 'localhost',
   port: 5432,
@@ -7,5 +8,10 @@ export const config: DataSourceOptions = {
   password: 'pass',
   database: 'crmdb',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
-  synchronize: true,
+  synchronize: false,
+  migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+  cli: {
+    migrationsDir: 'src/migrations',
+  },
 };
+export default ormconfig;
