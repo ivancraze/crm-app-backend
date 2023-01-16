@@ -71,6 +71,10 @@ export class UserService {
     return findedUser;
   }
 
+  findUserById(id: number): Promise<UserEntity> {
+    return this.userRepository.findOne(id);
+  }
+
   generateJwt(user: UserEntity): string {
     return sign(
       {
