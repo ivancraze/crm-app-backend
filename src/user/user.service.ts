@@ -9,6 +9,7 @@ import { UserEntity } from './user.entity';
 import { JWT_SECRET } from '../config';
 import { IUserResponse } from './user.model';
 import { LoginUserDto } from './dto/loginUser.dto';
+import { UpdateUserDto } from './dto/updateUser.dto';
 
 @Injectable()
 export class UserService {
@@ -69,6 +70,15 @@ export class UserService {
     delete findedUser.password;
 
     return findedUser;
+  }
+
+  async updateUser(
+    currentUserId: number,
+    updateUserDto: UpdateUserDto,
+  ): Promise<UserEntity> {
+    const user = await this.findUserById(currentUserId);
+    Object.assign(user, updateUserDto);
+    return await this.userRepository.save(user);
   }
 
   findUserById(id: number): Promise<UserEntity> {
